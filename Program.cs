@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Reflection; // Нужно для работы с ресурсами
+using System.Reflection;
 using TagLib;
 
 namespace SimpleTagEditor
@@ -23,7 +23,7 @@ namespace SimpleTagEditor
             };
             this.Controls.Add(LogBox);
             
-            // Загрузка иконки из ресурсов
+
             LoadIconFromResource(this);
 
             this.FormClosing += (s, e) => { e.Cancel = true; this.Hide(); };
@@ -32,9 +32,7 @@ namespace SimpleTagEditor
         private void LoadIconFromResource(Form form)
         {
             try {
-                // Пытаемся найти иконку в ресурсах сборки
                 var assembly = Assembly.GetExecutingAssembly();
-                // Ищем ресурс, который заканчивается на icon.ico
                 string resourceName = Array.Find(assembly.GetManifestResourceNames(), name => name.EndsWith("icon.ico"));
                 if (!string.IsNullOrEmpty(resourceName))
                 {
@@ -43,7 +41,7 @@ namespace SimpleTagEditor
                         if (stream != null) form.Icon = new Icon(stream);
                     }
                 }
-            } catch { /* Игнорируем, если иконка не зашита */ }
+            } catch {  }
         }
 
         public void AddLog(string msg) {
@@ -91,7 +89,7 @@ namespace SimpleTagEditor
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            // ГАРАНТИРОВАННАЯ ЗАГРУЗКА ИКОНКИ ИЗ РЕСУРСОВ
+
             try {
                 var assembly = Assembly.GetExecutingAssembly();
                 string resourceName = Array.Find(assembly.GetManifestResourceNames(), name => name.EndsWith("icon.ico"));
