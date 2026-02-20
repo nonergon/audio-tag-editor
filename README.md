@@ -44,8 +44,8 @@ ATE Pro provides deep access to the following fields:
 ### Compiling from Source
 
 ```bash
-dotnet build ATE.csproj -c Release
+build.cmd
 ```
-Find your portable executable in `bin/Release/net8.0-windows/ATE.exe`.
+Find your portable executable in `Release/ATE.exe`.
 
 
